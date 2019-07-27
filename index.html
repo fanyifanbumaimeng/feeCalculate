@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>水电燃气费用计算</title>
+</head>
+<body>
+  <span>消耗水量：<input id="water" type="text"></span>
+  <span>消耗电量：<input id="dian" type="text"></span>
+  <span>消耗燃气：<input id="air" type="text"></span>
+  <p id="total"></p>
+  <p id="average"></p>
+  <script src="jquery.js"></script>
+  <script>
+    const water = $("#water")
+    const dian = $("#dian")
+    const air = $("#air")
+    const totalContainer = $("#total")
+    const averageContainer = $("#average")
+    $("input").on('keyup',()=>{
+      const waterNum = water.val()
+      const dianNum = dian.val()
+      const airNum = air.val()
+      const waterFee = 2.5*waterNum;
+      const dianFee = dianNum > 200 ? (dianNum - 200)*( 0.5489+ 0.5) + 200* 0.5469 : dianNum * 0.5469
+      const airFee = 2.9* airNum
+      const total = waterFee + dianFee + airFee
+      totalContainer.text(total)
+      averageContainer.text(total/3)
+    })
+   
+  </script>
+</body>
+</html>
